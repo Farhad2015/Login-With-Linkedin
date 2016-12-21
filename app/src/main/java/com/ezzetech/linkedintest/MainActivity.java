@@ -13,11 +13,17 @@ import com.linkedin.platform.errors.LIAuthError;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
 //    public static final String PACKAGE = "com.ezzetech.linkedintest";
 
     Button buttonLogin;
+    long startTime,endTime;
+    Button buttonTestEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
+
+        buttonTestEvent = (Button)findViewById(R.id.test_event);
+        buttonTestEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LoginWithG.class);
+                startActivity(intent);
+            }
+        });
+       // addaneventCalender();
     }
 
 
@@ -91,4 +107,24 @@ public class MainActivity extends AppCompatActivity {
 //            Log.d("Error", e.getMessage(), e);
 //        }
 //    }
+
+    private void addaneventCalender(){
+
+        String startDate = "2016-12-22";
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+            startTime=date.getTime();
+        }
+        catch(Exception e){ }
+
+        Calendar cal = Calendar.getInstance();
+        Intent intent = new Intent(Intent.ACTION_EDIT);
+        intent.setType("vnd.android.cursor.item/event");
+        intent.putExtra("beginTime",startTime);
+        intent.putExtra("allDay", true);
+        //intent.putExtra("rrule", "FREQ=YEARLY");
+        intent.putExtra("endTime", endTime);
+        intent.putExtra("title", "A Test Event from android app in demo linkedin");
+        startActivity(intent);
+    }
 }

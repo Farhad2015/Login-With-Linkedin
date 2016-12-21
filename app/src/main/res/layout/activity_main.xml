@@ -26,5 +26,23 @@
         android:layout_below="@+id/linkedtext"
         android:layout_marginBottom="15dp"
         android:background="@drawable/signin"
-        android:visibility="visible"/>
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/test_event"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/login_button"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="79dp"
+        android:text="Button For Google Login Activity"
+        android:scrollbars="horizontal"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit ="marquee_forever"/>
+
 </RelativeLayout>
